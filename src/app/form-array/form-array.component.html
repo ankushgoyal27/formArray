@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="next()">
+
+  <input type="checkbox" formControlName="published"> Published
+  <input type="text" formControlName="name"> Published
+
+  {{formError.name}}
+
+  <!-- <div *ngIf="form.controls.published.value"> -->
+
+  <h2>Credentials</h2>
+  <button type="button" (click)="addCreds()">Add</button>
+  <div formArrayName="credentials">
+    <div *ngFor="let creds of credValues.controls; let i = index" [formGroupName]="i">
+      <input type="text" formControlName="username">
+      {{formError[i]?.username}}
+      <input type="text" formControlName="password">
+      <button type="button" (click)="removeCred(i)">Remove</button>
+      <label>{{getContent(i)}}</label>
+
+    </div>
+  </div>
+
+  <!-- </div> -->
+  <button type="submit">Submit</button>
+
+</form>

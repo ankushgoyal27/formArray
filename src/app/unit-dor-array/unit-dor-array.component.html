@@ -1,0 +1,21 @@
+<p>
+  Start editing to see some magic happen :)
+</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <label>Unit Price: </label>
+  <input formControlName="fdnUnitPrice">
+  <hr>
+  <div formArrayName="cap_values">
+    <div *ngFor="let cap of capValues.controls; let i = index" [formGroupName]="i">
+      <label>Share: </label>
+      <input type="number" formControlName="fdnTotalShare" (input)="calculate(cap)" />
+      <br>
+      <label>Sum: </label>
+      <input type="number" formControlName="fdnVal" />
+      <hr>
+    </div>
+  </div>
+
+  <button>Submit</button>
+</form>
